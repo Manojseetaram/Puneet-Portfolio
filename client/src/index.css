@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 6.7%;
+  
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 6.7%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 6.7%;
+  
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  
+  --primary: 0 0% 6.7%; /* Apple's primary text color */
+  --primary-foreground: 0 0% 98%;
+  
+  --secondary: 211 100% 44.7%; /* Apple's blue accent color */
+  --secondary-foreground: 0 0% 98%;
+  
+  --accent: 240 5.9% 96.5%; /* Apple's light background color */
+  --accent-foreground: 0 0% 6.7%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --neutral: 0 0% 52.9%; /* Apple's gray text color */
+  
+  --success: 142 70.6% 45.3%; /* Apple's green success color */
+  
+  --ring: 211 100% 44.7%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 98%;
+  
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  
+  --primary: 0 0% 98%; /* Dark mode primary text */
+  --primary-foreground: 0 0% 6.7%;
+  
+  --secondary: 211 100% 44.7%; /* Same blue accent color */
+  --secondary-foreground: 0 0% 98%;
+  
+  --accent: 0 0% 9.8%; /* Dark mode accent background */
+  --accent-foreground: 0 0% 98%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --neutral: 0 0% 63.9%; /* Dark mode gray text */
+  
+  --success: 142 70.6% 45.3%; /* Same success color */
+  
+  --ring: 211 100% 44.7%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground tracking-tight;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-20;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-title-sm {
+    @apply block text-sm text-secondary font-semibold mb-2;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-light tracking-tight text-primary;
+  }
+  
+  .section-subtitle {
+    @apply mt-4 max-w-2xl mx-auto text-neutral;
+  }
+  
+  .nav-link {
+    @apply text-primary hover:text-secondary transition-colors duration-300 font-medium relative;
+  }
+  
+  .nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    @apply bg-secondary;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover:after, .nav-link.active:after {
+    width: 100%;
+  }
+
+  .service-card {
+    @apply bg-white p-8 rounded-2xl shadow-sm transition-all duration-300;
+  }
+  
+  .service-card:hover {
+    @apply transform -translate-y-1 shadow-md;
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideIn {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-in-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.8s ease-in-out forwards;
+}
