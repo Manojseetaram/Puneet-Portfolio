@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-animation";
-import { Briefcase } from "lucide-react";
+import { Calendar, Trophy, Building, MapPin } from "lucide-react";
 
 export default function Experience() {
   const { elementRef, isIntersecting } = useIntersectionObserver();
@@ -13,7 +13,9 @@ export default function Experience() {
       period: "December 2023 – April 2024",
       description: [
         "Streamlined bookkeeping and accounting workflows using Zoho and QuickBooks, enhancing invoice processing efficiency by 25%.",
-        "Advised 50+ clients on UAE Corporate Tax (CIT) and VAT compliance, ensuring 100% on-time submission."
+        "Advised 50+ clients on UAE Corporate Tax (CIT) and VAT compliance, ensuring 100% on-time submission.",
+        "Interpreted and communicated evolving UAE tax regulations to clients, ensuring seamless adaptation to new policies.",
+        "Developed and delivered internal training programs on UAE tax laws, upskilling 15+ team members on compliance workflows."
       ],
       achievements: [
         "Reduced client tax penalties by 30% through proactive risk assessments and corrective filing strategies.",
@@ -26,8 +28,14 @@ export default function Experience() {
       location: "Bengaluru, India",
       period: "September 2022 – December 2023",
       description: [
-        "Prepared and filed Luxembourg corporate tax returns for Fortune 500 clients, ensuring compliance with EU directives.",
-        "Provided technical advisory on complex Luxembourg tax regulations, resolving 20+ high-risk client queries annually."
+        "Prepared and filed Luxembourg corporate tax returns for Fortune 500 clients (e.g., Oaktree, Triton, EQT), ensuring compliance with EU directives and local laws.",
+        "Provided technical advisory on complex Luxembourg tax regulations, resolving 20+ high-risk client queries annually.",
+        "Collaborated with cross-functional teams to align tax reporting with IFRS standards and audit requirements.",
+        "Automated bookkeeping processes using Exact and Yooz, reducing manual data entry errors by 40%."
+      ],
+      achievements: [
+        "Recognized for delivering zero-defect tax filings across 50+ client engagements, leading to training opportunities for new hires.",
+        "Spearheaded a process improvement initiative that cut client reporting turnaround time by 20%."
       ]
     },
     {
@@ -43,7 +51,7 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="section parallax-bg" style={{ backgroundColor: '#f5f5f7' }} ref={elementRef}>
+    <section id="experience" className="section bg-background" ref={elementRef}>
       <div className="container-custom">
         <div className="text-center mb-16">
           <span className="section-title-sm">CAREER</span>
@@ -53,95 +61,75 @@ export default function Experience() {
           </p>
         </div>
         
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-secondary transform md:translate-x-px"></div>
-          
-          {/* Timeline items */}
-          <motion.div 
-            className="space-y-12"
-            initial="hidden"
-            animate={isIntersecting ? "visible" : "hidden"}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.3
-                }
-              }
-            }}
-          >
-            {experiences.map((exp, index) => (
-              <motion.div 
-                key={index}
-                className="relative flex flex-col md:flex-row md:space-x-8"
-                variants={{
-                  hidden: { opacity: 0, x: index % 2 === 0 ? -20 : 20 },
-                  visible: { 
-                    opacity: 1, 
-                    x: 0,
-                    transition: { duration: 0.7, ease: "easeOut" }
-                  }
-                }}
-              >
-                {index % 2 === 0 ? (
-                  <>
-                    <div className="md:w-1/2 md:text-right pb-10 md:pb-0">
-                      <div className="timeline-card md:ml-auto md:mr-8">
-                        <h3 className="text-xl font-medium text-primary">{exp.title}</h3>
-                        <p className="text-secondary mt-1">{exp.company}</p>
-                        <p className="text-neutral mt-1">{exp.location} | {exp.period}</p>
-                        <div className="mt-4 space-y-3">
-                          {exp.description.map((item, i) => (
-                            <p key={i} className="text-neutral">{item}</p>
-                          ))}
-                          
-                          {exp.achievements && (
-                            <>
-                              <h4 className="text-lg font-semibold mt-4">Achievements:</h4>
-                              <ul className="list-disc list-inside">
-                                {exp.achievements.map((item, i) => (
-                                  <li key={i} className="text-neutral">{item}</li>
-                                ))}
-                              </ul>
-                            </>
-                          )}
-                        </div>
-                      </div>
+        <div className="space-y-16">
+          {experiences.map((exp, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isIntersecting ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.7, delay: index * 0.2 }}
+              className="experience-card"
+            >
+              <div className="flex flex-col md:flex-row gap-6 md:gap-10">
+                {/* Left side - company details */}
+                <div className="md:w-1/3 space-y-4">
+                  <div className="inline-block p-3 bg-secondary/10 rounded-lg">
+                    <Building className="w-6 h-6 text-secondary" />
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold text-primary mt-4">{exp.title}</h3>
+                  <p className="text-secondary font-medium">{exp.company}</p>
+                  
+                  <div className="flex items-start space-x-2 text-neutral">
+                    <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>{exp.location}</span>
+                  </div>
+                  
+                  <div className="flex items-start space-x-2 text-neutral">
+                    <Calendar className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>{exp.period}</span>
+                  </div>
+                </div>
+                
+                {/* Right side - responsibilities and achievements */}
+                <div className="md:w-2/3 space-y-6">
+                  <div>
+                    <h4 className="text-lg font-medium text-primary mb-3 pb-2 border-b border-border/50">Responsibilities</h4>
+                    <ul className="space-y-3">
+                      {exp.description.map((item, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-2 mr-3 flex-shrink-0"></span>
+                          <p className="text-neutral">{item}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  {exp.achievements && (
+                    <div>
+                      <h4 className="text-lg font-medium text-primary mb-3 pb-2 border-b border-border/50 flex items-center">
+                        <Trophy className="w-5 h-5 text-secondary mr-2" />
+                        Key Achievements
+                      </h4>
+                      <ul className="space-y-3">
+                        {exp.achievements.map((item, i) => (
+                          <li key={i} className="flex items-start">
+                            <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-2 mr-3 flex-shrink-0"></span>
+                            <p className="text-neutral">{item}</p>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    
-                    <div className="absolute left-0 md:left-1/2 top-0 w-10 h-10 bg-secondary rounded-full transform -translate-x-1/2 flex items-center justify-center">
-                      <Briefcase className="w-5 h-5 text-white" />
-                    </div>
-                    
-                    <div className="md:w-1/2"></div>
-                  </>
-                ) : (
-                  <>
-                    <div className="md:w-1/2"></div>
-                    
-                    <div className="absolute left-0 md:left-1/2 top-0 w-10 h-10 bg-secondary rounded-full transform -translate-x-1/2 flex items-center justify-center">
-                      <Briefcase className="w-5 h-5 text-white" />
-                    </div>
-                    
-                    <div className="md:w-1/2 pb-10 md:pb-0">
-                      <div className="timeline-card md:mr-auto md:ml-8">
-                        <h3 className="text-xl font-medium text-primary">{exp.title}</h3>
-                        <p className="text-secondary mt-1">{exp.company}</p>
-                        <p className="text-neutral mt-1">{exp.location} | {exp.period}</p>
-                        <div className="mt-4 space-y-3">
-                          {exp.description.map((item, i) => (
-                            <p key={i} className="text-neutral">{item}</p>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
+                  )}
+                </div>
+              </div>
+              
+              {/* Divider for all but the last item */}
+              {index < experiences.length - 1 && (
+                <div className="mt-16 border-t border-border/30"></div>
+              )}
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

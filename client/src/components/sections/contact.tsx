@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/use-animation";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -75,159 +75,151 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="section bg-white" ref={elementRef}>
+    <section id="contact" className="section bg-accent" ref={elementRef}>
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <span className="section-title-sm">CONTACT</span>
+        <div className="text-center mb-12">
+          <span className="section-title-sm">GET IN TOUCH</span>
           <h2 className="section-title">Let's Connect</h2>
           <p className="section-subtitle">
             Reach out to discuss how my tax expertise can benefit your business.
           </p>
         </div>
         
-        <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12"
-          initial="hidden"
-          animate={isIntersecting ? "visible" : "hidden"}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.2
-              }
-            }
-          }}
-        >
-          <motion.div 
-            className="bg-accent p-8 rounded-2xl"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { 
-                opacity: 1, 
-                y: 0,
-                transition: { duration: 0.6, ease: "easeOut" }
-              }
-            }}
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800" 
-              alt="Professional tax consultation office" 
-              className="rounded-xl w-full h-auto object-cover mb-8"
-            />
-            
-            <div className="space-y-6">
-              {contactInfo.map((item, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-secondary text-white">
-                    <item.icon className="w-5 h-5" />
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg font-medium text-primary">{item.title}</h3>
-                    <p className="mt-1 text-neutral">{item.details}</p>
+        <div className="relative p-1 rounded-lg bg-gradient-to-br from-secondary/20 via-secondary/5 to-transparent shadow-xl">
+          <div className="bg-background rounded-lg p-0 md:p-1 overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
+              {/* Left panel - contact info */}
+              <motion.div 
+                className="lg:col-span-2 bg-secondary/5 p-8 md:p-10"
+                initial={{ opacity: 0, x: -30 }}
+                animate={isIntersecting ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h3 className="text-2xl font-semibold text-primary mb-6">Contact Information</h3>
+                <p className="text-neutral mb-10">Fill out the form and I'll get back to you as soon as possible.</p>
+                
+                <div className="space-y-8">
+                  {contactInfo.map((item, index) => (
+                    <div key={index} className="flex items-start hover:text-secondary transition-colors duration-300 group">
+                      <div className="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      <div className="ml-4">
+                        <h3 className="text-base font-medium text-primary group-hover:text-secondary transition-colors duration-300">{item.title}</h3>
+                        <p className="mt-1 text-neutral">{item.details}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Social media icons could go here */}
+                <div className="absolute bottom-10 left-10 hidden lg:block">
+                  <div className="flex space-x-4">
+                    {/* Social icons */}
                   </div>
                 </div>
-              ))}
+              </motion.div>
+              
+              {/* Right panel - form */}
+              <motion.div
+                className="lg:col-span-3 p-8 md:p-10"
+                initial={{ opacity: 0, x: 30 }}
+                animate={isIntersecting ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h3 className="text-2xl font-semibold text-primary mb-6">Send a Message</h3>
+                
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-primary text-sm font-medium">Full Name</FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="John Doe" 
+                                className="bg-accent/50 border-0 focus:ring-1 focus:ring-secondary py-3" 
+                                {...field} 
+                              />
+                            </FormControl>
+                            <FormMessage className="text-xs" />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-primary text-sm font-medium">Email Address</FormLabel>
+                            <FormControl>
+                              <Input 
+                                placeholder="john@example.com" 
+                                type="email"
+                                className="bg-accent/50 border-0 focus:ring-1 focus:ring-secondary py-3" 
+                                {...field} 
+                              />
+                            </FormControl>
+                            <FormMessage className="text-xs" />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-primary text-sm font-medium">Subject</FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder="How can I help you?" 
+                              className="bg-accent/50 border-0 focus:ring-1 focus:ring-secondary py-3" 
+                              {...field} 
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-primary text-sm font-medium">Message</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="Your message here..." 
+                              className="bg-accent/50 border-0 focus:ring-1 focus:ring-secondary resize-none min-h-[150px]"
+                              {...field} 
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="px-8 py-3 h-auto bg-secondary text-white hover:bg-secondary/90 transition-colors duration-300 flex items-center gap-2"
+                    >
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                      <Send className="w-4 h-4" />
+                    </Button>
+                  </form>
+                </Form>
+              </motion.div>
             </div>
-          </motion.div>
-          
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { 
-                opacity: 1, 
-                y: 0,
-                transition: { duration: 0.6, ease: "easeOut" }
-              }
-            }}
-          >
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-primary">Name</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Your name" 
-                          className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition duration-300" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-primary">Email</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Your email address" 
-                          type="email"
-                          className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition duration-300" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="subject"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-primary">Subject</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="What is this regarding?" 
-                          className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition duration-300" 
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-primary">Message</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Your message" 
-                          className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition duration-300"
-                          rows={4}
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full px-6 py-6 h-auto bg-secondary text-white rounded-lg hover:bg-blue-700 transition duration-300"
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            </Form>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
