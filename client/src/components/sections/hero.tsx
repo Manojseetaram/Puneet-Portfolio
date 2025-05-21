@@ -84,7 +84,7 @@ export default function Hero() {
             <div className="relative">
               <div className="absolute -inset-1 bg-gradient-to-r from-secondary to-blue-500 rounded-lg blur opacity-20"></div>
               <img 
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800"
+                src="/src/assets/profile-photo.jpeg"
                 alt="Punith KJ - Senior Tax Consultant" 
                 className="relative rounded-lg shadow-lg w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover"
               />
