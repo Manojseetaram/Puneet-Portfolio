@@ -4,28 +4,28 @@
 
 :root {
   --background: 0 0% 100%;
-  --foreground: 0 0% 6.7%;
+  --foreground: 0 0% 3.9%;
   
   --muted: 0 0% 96.1%;
   --muted-foreground: 0 0% 45.1%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 6.7%;
+  --popover-foreground: 0 0% 3.9%;
   
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 6.7%;
+  --card-foreground: 0 0% 3.9%;
   
   --border: 0 0% 89.8%;
   --input: 0 0% 89.8%;
   
-  --primary: 0 0% 6.7%; /* Apple's primary text color */
+  --primary: 0 0% 3.9%; /* Apple's primary text color */
   --primary-foreground: 0 0% 98%;
   
-  --secondary: 211 100% 44.7%; /* Apple's blue accent color */
+  --secondary: 213 100% 45.1%; /* Apple's blue accent color */
   --secondary-foreground: 0 0% 98%;
   
-  --accent: 240 5.9% 96.5%; /* Apple's light background color */
-  --accent-foreground: 0 0% 6.7%;
+  --accent: 240 5.9% 97.3%; /* Apple's light background color */
+  --accent-foreground: 0 0% 3.9%;
   
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
@@ -34,12 +34,12 @@
   
   --success: 142 70.6% 45.3%; /* Apple's green success color */
   
-  --ring: 211 100% 44.7%;
+  --ring: 213 100% 45.1%;
   --radius: 0.5rem;
 }
 
 .dark {
-  --background: 0 0% 0%;
+  --background: 0 0% 3.9%;
   --foreground: 0 0% 98%;
   
   --muted: 0 0% 14.9%;
@@ -48,19 +48,19 @@
   --popover: 0 0% 3.9%;
   --popover-foreground: 0 0% 98%;
   
-  --card: 0 0% 3.9%;
+  --card: 0 0% 7%;
   --card-foreground: 0 0% 98%;
   
   --border: 0 0% 14.9%;
   --input: 0 0% 14.9%;
   
   --primary: 0 0% 98%; /* Dark mode primary text */
-  --primary-foreground: 0 0% 6.7%;
+  --primary-foreground: 0 0% 3.9%;
   
-  --secondary: 211 100% 44.7%; /* Same blue accent color */
+  --secondary: 213 100% 60%; /* Brighter blue accent for dark mode */
   --secondary-foreground: 0 0% 98%;
   
-  --accent: 0 0% 9.8%; /* Dark mode accent background */
+  --accent: 0 0% 12%; /* Dark mode accent background */
   --accent-foreground: 0 0% 98%;
   
   --destructive: 0 62.8% 30.6%;
@@ -70,7 +70,7 @@
   
   --success: 142 70.6% 45.3%; /* Same success color */
   
-  --ring: 211 100% 44.7%;
+  --ring: 213 100% 60%;
 }
 
 @layer base {
@@ -89,7 +89,7 @@
 
 @layer components {
   .section {
-    @apply py-20;
+    @apply py-16 md:py-20;
   }
   
   .container-custom {
@@ -97,15 +97,15 @@
   }
   
   .section-title-sm {
-    @apply block text-sm text-secondary font-semibold mb-2;
+    @apply block text-sm text-secondary font-semibold tracking-wide mb-2;
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-light tracking-tight text-primary;
+    @apply text-3xl md:text-4xl font-light tracking-tight text-primary leading-tight;
   }
   
   .section-subtitle {
-    @apply mt-4 max-w-2xl mx-auto text-neutral;
+    @apply mt-4 max-w-2xl mx-auto text-neutral text-lg;
   }
   
   .nav-link {
@@ -128,11 +128,39 @@
   }
 
   .service-card {
-    @apply bg-white p-8 rounded-2xl shadow-sm transition-all duration-300;
+    @apply bg-card p-8 rounded-xl shadow-sm border border-border/40 transition-all duration-300;
   }
   
   .service-card:hover {
-    @apply transform -translate-y-1 shadow-md;
+    @apply transform -translate-y-1 shadow-md border-secondary/20;
+  }
+  
+  .timeline-card {
+    @apply bg-card p-6 rounded-xl shadow-sm border border-border/40 transition-all duration-300;
+  }
+  
+  .timeline-card:hover {
+    @apply shadow-md border-secondary/20;
+  }
+  
+  .education-card {
+    @apply bg-card p-6 rounded-xl shadow-sm border border-border/40 flex flex-col h-full;
+  }
+  
+  .education-card:hover {
+    @apply shadow-md border-secondary/10;
+  }
+  
+  .certification-card {
+    @apply bg-card p-6 rounded-xl shadow-sm border border-border/40 flex flex-col h-full;
+  }
+  
+  .apple-btn-primary {
+    @apply px-6 py-3 bg-secondary text-white rounded-full transition-all duration-300 hover:bg-opacity-90 hover:shadow-md font-medium text-sm tracking-wide;
+  }
+  
+  .apple-btn-secondary {
+    @apply px-6 py-3 border border-secondary text-secondary rounded-full transition-all duration-300 hover:bg-secondary hover:text-white font-medium text-sm tracking-wide;
   }
 }
 
