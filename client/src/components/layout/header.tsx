@@ -58,9 +58,9 @@ export default function Header() {
       <div className="container-custom">
         <div className="flex justify-between items-center py-4 md:py-6">
           <Link href="/">
-            <a className="text-xl font-medium tracking-tight text-primary">
+            <span className="text-xl font-medium tracking-tight text-primary cursor-pointer">
               Punith <span className="text-secondary">KJ</span>
-            </a>
+            </span>
           </Link>
           
           <nav className="hidden md:flex space-x-8">
