@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "@/lib/theme-provider";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [isScrolled, setIsScrolled] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   
@@ -18,6 +16,8 @@ export default function Header() {
     { name: "Services", href: "#services" },
     { name: "Skills", href: "#skills" },
     { name: "Experience", href: "#experience" },
+    { name: "Education", href: "#education" },
+    { name: "Certifications", href: "#certifications" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -46,24 +46,20 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
   return (
     <header className={cn(
       "fixed w-full z-50 transition-all duration-300",
-      isScrolled ? "bg-background/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+      isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent"
     )}>
       <div className="container-custom">
-        <div className="flex justify-between items-center py-4 md:py-6">
+        <div className="flex justify-between items-center py-4 md:py-5">
           <Link href="/">
             <span className="text-xl font-medium tracking-tight text-primary cursor-pointer">
               Punith <span className="text-secondary">KJ</span>
             </span>
           </Link>
           
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-6">
             {navLinks.map((link) => (
               <a 
                 key={link.href}
@@ -76,10 +72,6 @@ export default function Header() {
                 {link.name}
               </a>
             ))}
-            
-            <button onClick={toggleTheme} className="text-primary hover:text-secondary transition-colors duration-300">
-              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
-            </button>
           </nav>
           
           <button 
@@ -112,15 +104,6 @@ export default function Header() {
                   {link.name}
                 </a>
               ))}
-              <div className="px-3 py-2 flex items-center">
-                <span className="mr-3 text-neutral">Theme:</span>
-                <button 
-                  onClick={toggleTheme} 
-                  className="text-primary hover:text-secondary transition-colors duration-300"
-                >
-                  {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-                </button>
-              </div>
             </div>
           </motion.div>
         )}
