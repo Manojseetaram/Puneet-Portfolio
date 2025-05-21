@@ -76,11 +76,11 @@ export default function Hero() {
             variants={itemVariants}
           >
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-secondary to-blue-500 rounded-3xl blur opacity-30"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-secondary to-blue-500 rounded-lg blur-sm opacity-20"></div>
               <img 
                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800"
                 alt="Punith KJ - Senior Tax Consultant" 
-                className="relative rounded-3xl shadow-xl w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover border border-white/20"
+                className="relative rounded-lg shadow-lg w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover"
               />
             </div>
           </motion.div>

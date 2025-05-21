@@ -35,7 +35,8 @@
   --success: 142 70.6% 45.3%; /* Apple's green success color */
   
   --ring: 213 100% 45.1%;
-  --radius: 0.5rem;
+  --radius: 0.375rem;
+  --card-radius: 0.375rem;
 }
 
 .dark {
@@ -128,39 +129,39 @@
   }
 
   .service-card {
-    @apply bg-card p-8 rounded-xl shadow-sm border border-border/40 transition-all duration-300;
+    @apply bg-card p-6 rounded-lg shadow-sm border-0 transition-all duration-300;
   }
   
   .service-card:hover {
-    @apply transform -translate-y-1 shadow-md border-secondary/20;
+    @apply transform -translate-y-1 shadow-md;
   }
   
   .timeline-card {
-    @apply bg-card p-6 rounded-xl shadow-sm border border-border/40 transition-all duration-300;
+    @apply bg-card p-5 rounded-lg shadow-sm border-0 transition-all duration-300;
   }
   
   .timeline-card:hover {
-    @apply shadow-md border-secondary/20;
+    @apply shadow-md;
   }
   
   .education-card {
-    @apply bg-card p-6 rounded-xl shadow-sm border border-border/40 flex flex-col h-full;
+    @apply bg-card p-5 rounded-lg shadow-sm border-0 flex flex-col h-full;
   }
   
   .education-card:hover {
-    @apply shadow-md border-secondary/10;
+    @apply shadow-md;
   }
   
   .certification-card {
-    @apply bg-card p-6 rounded-xl shadow-sm border border-border/40 flex flex-col h-full;
+    @apply bg-card p-5 rounded-lg shadow-sm border-0 flex flex-col h-full;
   }
   
   .apple-btn-primary {
-    @apply px-6 py-3 bg-secondary text-white rounded-full transition-all duration-300 hover:bg-opacity-90 hover:shadow-md font-medium text-sm tracking-wide;
+    @apply px-5 py-2.5 bg-secondary text-white rounded-lg transition-all duration-300 hover:bg-opacity-90 hover:shadow-sm font-medium text-sm tracking-wide;
   }
   
   .apple-btn-secondary {
-    @apply px-6 py-3 border border-secondary text-secondary rounded-full transition-all duration-300 hover:bg-secondary hover:text-white font-medium text-sm tracking-wide;
+    @apply px-5 py-2.5 border border-secondary text-secondary rounded-lg transition-all duration-300 hover:bg-secondary hover:text-white font-medium text-sm tracking-wide;
   }
 }
 

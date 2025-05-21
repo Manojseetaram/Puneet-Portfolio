@@ -88,7 +88,7 @@ export default function Experience() {
                 {index % 2 === 0 ? (
                   <>
                     <div className="md:w-1/2 md:text-right pb-10 md:pb-0">
-                      <div className="bg-white p-6 rounded-2xl shadow-sm md:ml-auto md:mr-8">
+                      <div className="timeline-card md:ml-auto md:mr-8">
                         <h3 className="text-xl font-medium text-primary">{exp.title}</h3>
                         <p className="text-secondary mt-1">{exp.company}</p>
                         <p className="text-neutral mt-1">{exp.location} | {exp.period}</p>
@@ -126,7 +126,7 @@ export default function Experience() {
                     </div>
                     
                     <div className="md:w-1/2 pb-10 md:pb-0">
-                      <div className="bg-white p-6 rounded-2xl shadow-sm md:mr-auto md:ml-8">
+                      <div className="timeline-card md:mr-auto md:ml-8">
                         <h3 className="text-xl font-medium text-primary">{exp.title}</h3>
                         <p className="text-secondary mt-1">{exp.company}</p>
                         <p className="text-neutral mt-1">{exp.location} | {exp.period}</p>
