@@ -1,1 +1,7 @@
 # Puneet-Portfolio
+node_modules
+dist
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz
