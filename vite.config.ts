@@ -31,7 +31,13 @@
 // });
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
+  root: path.resolve(__dirname, 'client'), // 👈 tell Vite where index.html is
   plugins: [react()],
-});
+  build: {
+    outDir: path.resolve(__dirname, 'dist'), // 👈 you can also do 'client/dist' if you prefer
+    emptyOutDir: true,
+  }
+})
