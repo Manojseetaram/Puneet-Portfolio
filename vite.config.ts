@@ -34,10 +34,16 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
-  root: path.resolve(__dirname, 'client'), // 👈 tell Vite where index.html is
+  root: path.resolve(__dirname, 'client'),
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'client/src'),
+    },
+  },
   build: {
-    outDir: path.resolve(__dirname, 'dist'), // 👈 you can also do 'client/dist' if you prefer
+    outDir: path.resolve(__dirname, 'dist'),
     emptyOutDir: true,
-  }
+  },
 })
+
